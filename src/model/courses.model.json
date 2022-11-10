@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "coursName": "Ruby",
+    "desc": "yaxshi kurs",
+    "price": "900 000"
+  },
+  {
+    "id": 2,
+    "coursName": "Python",
+    "desc": "daxshat",
+    "price": "1 200 000"
+  },
+  {
+    "id": 3,
+    "coursName": "js",
+    "desc": "daxshat",
+    "price": "900 000"
+  },
+  {
+    "id": 4,
+    "coursName": "C++",
+    "desc": "daxshat",
+    "price": "2 000 000"
+  }
+]

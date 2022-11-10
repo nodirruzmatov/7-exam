@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "groupName": "n11",
+    "courseId": "1",
+    "teacher": "2",
+    "day": "DU-CHOR-JUMA",
+    "time": "8:00 - 10:00"
+  },
+  {
+    "id": 2,
+    "groupName": "n12",
+    "courseId": "4",
+    "teacher": "6",
+    "day": "DU-CHOR-JUMA",
+    "time": "8:00 - 10:00"
+  }
+]

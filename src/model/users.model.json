@@ -1,0 +1,105 @@
+[
+  {
+    "id": 1,
+    "name": "Eshmat",
+    "password": "1",
+    "role": "admin"
+  },
+  {
+    "id": 2,
+    "name": "Eshmat",
+    "password": "2",
+    "role": "teacher",
+    "phoneNumber": "9896",
+    "cours": "Ruby",
+    "group": [
+      1
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Toshmat",
+    "password": "2",
+    "role": "teacher",
+    "phoneNumber": "213",
+    "cours": "Ruby",
+    "group": []
+  },
+  {
+    "id": 4,
+    "name": "Nodir",
+    "password": "2",
+    "role": "teacher",
+    "phoneNumber": "213",
+    "cours": "Ruby",
+    "group": []
+  },
+  {
+    "id": 5,
+    "name": "joni",
+    "password": "1",
+    "role": "teacher",
+    "phoneNumber": "213",
+    "cours": "Ruby",
+    "group": []
+  },
+  {
+    "id": 6,
+    "name": "pandda",
+    "password": "1asd",
+    "role": "teacher",
+    "phoneNumber": "9896",
+    "cours": "C++",
+    "group": [
+      2
+    ]
+  },
+  {
+    "id": 7,
+    "name": "Eshmat",
+    "password": "adwaw",
+    "role": "student",
+    "phoneNumber": "9896",
+    "groupId": "1"
+  },
+  {
+    "id": 8,
+    "name": "joni",
+    "password": "w",
+    "role": "student",
+    "phoneNumber": "9896",
+    "groupId": "1"
+  },
+  {
+    "id": 9,
+    "name": "rayhon",
+    "password": "2",
+    "role": "student",
+    "phoneNumber": "213",
+    "groupId": "1"
+  },
+  {
+    "id": 10,
+    "name": "messi",
+    "password": "1",
+    "role": "student",
+    "phoneNumber": "9896",
+    "groupId": "1"
+  },
+  {
+    "id": 11,
+    "name": "rayhon",
+    "password": "1",
+    "role": "student",
+    "phoneNumber": "9896",
+    "groupId": "1"
+  },
+  {
+    "id": 12,
+    "name": "joni",
+    "password": "2",
+    "role": "student",
+    "phoneNumber": "9896",
+    "groupId": "1"
+  }
+]

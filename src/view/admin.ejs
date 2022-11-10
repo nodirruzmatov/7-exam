@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/assets/css/admin.css">
+  <title>ADMIN</title>
+</head>
+
+<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+  <header role="banner">
+    <h1>Admin Panel</h1>
+    <ul class="utilities">
+      <br>
+      <li class="logout warn"><a href="/">Log Out</a></li>
+    </ul>
+  </header>
+
+  <nav role='navigation'>
+    <ul class="main">
+      <li class="dashboard"><a href="/admin">Dashboard</a></li>
+      <li class="write"><a href="/admin/cours">Kurslar</a></li>
+      <li class="edit"><a href="/admin/teach">Ustozlar</a></li>
+      <li class="comments"><a href="/admin/group">Guruhlar</a></li>
+      <li class="users"><a href="/admin/student">O'quvchilar</a></li>
+    </ul>
+  </nav>
+
+  <main role="main">
+    <% if (link=='/admin' ) { %>
+      <section class="cards_section">
+        <div class="card">
+
+          <h3 class="card_header">Jami o'quvchilar soni</h3>
+          <p class="card_text">
+            <%= stuNum %>
+          </p>
+
+        </div>
+
+        <div class="card">
+
+          <h3 class="card_header">Jami o'qtuvchilar soni</h3>
+          <p class="card_text">
+            <%= teachNum %>
+          </p>
+
+        </div>
+
+        <div class="card">
+
+          <h3 class="card_header">Jami guruhlar soni</h3>
+          <p class="card_text">
+            <%= groupNum %>
+          </p>
+
+        </div>
+
+        <div class="card">
+
+          <h3 class="card_header">Jami kurslar soni</h3>
+          <p class="card_text">
+            <%= coursNum %>
+          </p>
+
+        </div>
+      </section>
+
+      <% } else if (link=='/admin/cours' ) { %>
+        <!-- ! courses --------------------------------------------- -->
+        <section class="courses_section">
+
+          <form class="cours_form" action="/admin/newCours" enctype="application/x-www-form-urlencoded" method="post">
+
+            <input class="cours_inp" type="text" name="coursName" placeholder="Kurs nomi..." required>
+            <input class="cours_inp" type="text" name="desc" placeholder="Kurs haqida..." required>
+            <input class="cours_inp" type="text" name="price" placeholder="Kurs narxi..." required>
+
+            <button class="cours_add" type="submit">Qo'shish</button>
+
+          </form>
+
+          <ul class="courses_list">
+
+            <% allCourses.map(e=>{ %>
+              <li class="courses_item">
+                <h3 class="courses_header">
+                  <%= e.coursName %>
+                </h3>
+                <p class="courses_desc">
+                  <%= e.desc %>
+                </p>
+                <p class="courses_price">
+                  <%= e.price %>
+                </p>
+                <button id="<%= e.id %> " class="courses_btn">delete</button>
+              </li>
+              <% })%>
+
+          </ul>
+        </section>
+
+        <% } else if (link=='/admin/teach' ) { %>
+
+          <!-- ! teacher ------------------------------- -->
+          <section class="teacher_section">
+
+            <form class="cours_form" action="/admin/newTeach" enctype="application/x-www-form-urlencoded" method="post">
+
+              <input class="cours_inp" type="text" name="name" placeholder="O'qtuvchi ismi" required>
+              <input class="cours_inp" type="text" name="password" placeholder="Parol" required>
+              <label for="cours">Kurs</label>
+              <select class="cours_inp" name="cours" id="cours">
+                <% allCourses.map(e=>{ %>
+                  <option value="<%= e.coursName %>">
+                    <%= e.coursName %>
+                  </option>
+                  <% }) %>
+              </select>
+              <input class="cours_inp" type="text" name="phoneNumber" placeholder="Ustozni telefon raqami" required>
+
+
+              <button class="cours_add" type="submit">Qo'shish</button>
+
+            </form>
+
+            <ul class="courses_list">
+
+              <% allTeachers.map(e=>{ %>
+                <li class="courses_item">
+                  <h3 class="courses_header">
+                    <%= e.name %>
+                  </h3>
+                  <p class="courses_desc">password:
+                    <%= e.password %>
+                  </p>
+                  <p class="courses_price">tel:
+                    <%= e.phoneNumber %>
+                  </p>
+                  <p class="courses_price">kurs:
+                    <%= e.cours %>
+                  </p>
+                  <button id="<%= e.id %> " class="teacher_btn">delete</button>
+                </li>
+                <% })%>
+
+            </ul>
+
+          </section>
+
+          <% } else if (link=='/admin/group' ) { %>
+            <!-- ! group -------------------------------- -->
+            <section class="group_section">
+
+              <form class="cours_form" action="/admin/newGroup" enctype="application/x-www-form-urlencoded"
+                method="post">
+
+                <input class="cours_inp" type="text" name="groupName" placeholder="Guruh nomi" required>
+
+                <label for="courseId">Kurs</label>
+                <select class="cours_inp" name="courseId" id="courseId">
+                  <% allCourses.map(e=>{ %>
+                    <option value="<%= e.id %>">
+                      <%= e.coursName %>
+                    </option>
+                    <% }) %>
+                </select>
+
+                <label for="teacher">Ustoz</label>
+                <select class="cours_inp" name="teacher" id="teacher">
+                  <% allTeachers.map(e=>{ %>
+                    <option value="<%= e.id %>">
+                      Ustoz: <%= e.name %>
+                        - <%= e.cours %>
+                    </option>
+                    <% }) %>
+
+                </select>
+
+                <label for="day">Kunlar</label>
+                <select class="cours_inp" name="day" id="day">
+                  <option value="DU-CHOR-JUMA">DU-CHOR-JUMA</option>
+                  <option value="SE-PAY-SHA">SE-PAY-SHA</option>
+                </select>
+
+                <label for="time">Vaqti</label>
+                <select class="cours_inp" name="time" id="time">
+                  <option value="8:00 - 10:00">8:00 - 10:00</option>
+                  <option value="11:00 - 13:00">11:00 - 13:00</option>
+                  <option value="14:00 - 16:00">14:00 - 16:00</option>
+                  <option value="18:00 - 20:00">18:00 - 20:00</option>
+                </select>
+
+                <button class="cours_add" type="submit">Qo'shish</button>
+
+              </form>
+
+              <ul class="courses_list">
+
+                <% allGroups.map(e=>{ %>
+                  <li class="courses_item">
+
+                    <h3 class="courses_header">
+                      <%= e.groupName %>
+                    </h3>
+
+                    <p class="courses_price">ustoz:
+                      <% allTeachers.filter(m=> { %>
+                        <%= m.id==e.teacher ? m.name: '' %>
+                          <% } ) %>
+                    </p>
+
+                    <p class="courses_price">kurs:
+                      <% allCourses.filter(m=> { %>
+                        <%= m.id==e.courseId ? m.coursName: '' %>
+                          <% } ) %>
+                    </p>
+
+                    <p class="courses_desc">kuni:
+                      <%= e.day %>
+                    </p>
+
+                    <p class="courses_desc">vaqti:
+                      <%= e.time %>
+                    </p>
+
+                    <button id="<%= e.id %> " class="group_btn">delete</button>
+                  </li>
+                  <% })%>
+
+              </ul>
+
+            </section>
+            <% } else if (link=='/admin/student' ) { %>
+              <!-- ! student  -------------------------------------- -->
+              <section class="student_section">
+
+                <form class="cours_form" action="/admin/newStudent" enctype="application/x-www-form-urlencoded"
+                  method="post">
+
+                  <input class="cours_inp" type="text" name="name" placeholder="O'quvchi ismi" required>
+                  <input class="cours_inp" type="text" name="password" placeholder="Parol" required>
+
+                  <label for="groupId">Guruh</label>
+                  <select class="cours_inp" name="groupId" id="groupId">
+                    <% allGroups.map(e=>{ %>
+                      <option value="<%= e.id %>">
+                        <%= e.groupName %>
+                      </option>
+                      <% }) %>
+                  </select>
+
+                  <input class="cours_inp" type="text" name="phoneNumber" placeholder="O'quvchini telefon raqami"
+                    required>
+
+
+                  <button class="cours_add" type="submit">Qo'shish</button>
+
+                </form>
+
+
+                <ul class="courses_list">
+
+                  <% allStudent.map(e=>{ %>
+                    <li class="courses_item">
+
+                      <h3 class="courses_header">
+                        <%= e.name %>
+                      </h3>
+
+                      <p class="courses_price">parol:
+                        <%= e.password %>
+                      </p>
+
+                      <p class="courses_price">guruh:
+                        <% allGroups.filter(m=> { %>
+                          <%= m.id==e.groupId ? m.groupName: '' %>
+                            <% } ) %>
+                      </p>
+
+                      <p class="courses_desc">tel:
+                        <%= e.phoneNumber %>
+                      </p>
+
+
+                      <button id="<%= e.id %> " class="stud_btn">delete</button>
+                    </li>
+                    <% })%>
+
+                </ul>
+
+
+              </section>
+              <% } %>
+
+
+  </main>
+
+
+  <script src="/assets/js/admin.js"></script>
+</body>
+
+</html>

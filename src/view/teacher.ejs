@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/assets/css/admin.css">
+  <title>teacher</title>
+</head>
+
+<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+  <header role="banner">
+    <h1>Ustoz</h1>
+    <ul class="utilities">
+      <br>
+      <li class="logout warn"><a href="/">Log Out</a></li>
+    </ul>
+  </header>
+
+  <nav role='navigation'>
+    <ul class="main">
+      <li class="edit"><a href="#">Ustozlar</a></li>
+    </ul>
+  </nav>
+
+  <main role="main">
+
+    <% if (link=='/teacher' ) { %>
+
+      <!-- ! group -------------------------------- -->
+      <section class="group_section">
+
+
+        <ul class="courses_list">
+
+          <% foundGroup.map(e=>{ %>
+            <li id="<%= e.id %> " class="courses_item">
+              <a href="/teacher/group/<%= e.id %>">
+
+                <h3 class="courses_header">
+                  <%= e.groupName %>
+                </h3>
+
+
+                <p class="courses_desc">kuni:
+                  <%= e.day %>
+                </p>
+
+                <p class="courses_desc">vaqti:
+                  <%= e.time %>
+                </p>
+
+              </a>
+
+            </li>
+            <% })%>
+
+        </ul>
+
+      </section>
+
+      <% } else if (link=='/teacher/group' ) { %>
+        <!-- ! student ----------------------------------- -->
+        <section class="student_section">
+          <h2 class="student_header">
+            <%= foundGroup.groupName %>
+          </h2>
+
+          <form action="/teacher/homework" enctype="application/x-www-form-urlencoded" method="post">
+            <input class="cours_inp" type="text" name="desc" placeholder="Uy ishi" required>
+            <input class="hidden_inp" type="text" name="groupId" value="<%= foundGroup.id %>">
+
+            <button class="stud_btn">Jo'natish</button>
+          </form>
+
+          <ul class="courses_list">
+
+            <% foundStudent.map(e=>{ %>
+              <li class="courses_item">
+
+                <h3 class="courses_header">
+                  <%= e.name %>
+                </h3>
+
+                <p class="courses_desc">tel:
+                  <%= e.phoneNumber %>
+                </p>
+
+              </li>
+              <% })%>
+
+          </ul>
+
+          <a class="stud_btn" href="/teacher">Orqaga</a>
+
+
+        </section>
+        <% } %>
+
+
+
+  </main>
+
+
+  <script src="/assets/js/teacher.js"></script>
+</body>
+
+</html>
